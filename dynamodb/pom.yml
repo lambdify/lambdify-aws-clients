@@ -1,0 +1,20 @@
+modelVersion: 4.0.0
+
+parent:
+  groupId: org.lambdify
+  artifactId: lambdify-aws-client-parent
+  version: 0.6.0.Final
+  relativePath: "../pom.yml"
+
+groupId: org.lambdify
+artifactId: lambdify-aws-client-dynamodb
+packaging: jar
+
+properties:
+  version.jackson: "2.9.5"
+
+dependencies:
+- { groupId: org.lambdify, artifactId: lambdify-aws-client-core, version: "${project.version}" }
+- { groupId: org.lambdify, artifactId: lambdify-aws-events-dynamodb, version: "${project.version}" }
+- { groupId: com.fasterxml.jackson.core, artifactId: jackson-annotations, version: "${version.jackson}", scope: "provided" }
+- { groupId: com.fasterxml.jackson.core, artifactId: jackson-databind, version: "${version.jackson}", scope: test }

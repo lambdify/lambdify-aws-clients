@@ -1,0 +1,26 @@
+modelVersion: 4.0.0
+
+parent:
+  groupId: io.skullabs.boilerplates
+  artifactId: java-8
+  version: 1.0.0
+
+groupId: org.lambdify
+artifactId: lambdify-aws-client-parent
+version: 0.6.0.Final
+packaging: pom
+
+scm: { url: "git@github.com:lambdify/lambdify-aws-client.git" }
+
+modules:
+ - "core"
+ - "dynamodb"
+ - "s3"
+
+build:
+  plugins:
+    - groupId: org.apache.maven.plugins
+      artifactId: maven-javadoc-plugin
+      version: "${version.javadoc.plugin}"
+      configuration:
+        additionalparam: "-Xdoclint:none"
