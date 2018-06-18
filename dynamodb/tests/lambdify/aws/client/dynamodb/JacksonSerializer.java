@@ -30,6 +30,15 @@ public class JacksonSerializer implements AwsClientJsonSerializer {
 	}
 
 	@Override
+	public byte[] serializeAsBytes(Object object) {
+		try {
+			return objectMapper.writeValueAsBytes( object );
+		} catch ( JsonProcessingException e ) {
+			throw new IllegalStateException( e );
+		}
+	}
+
+	@Override
 	public <T> T unserialize(String input, Class<T> clazz) {
 		try {
 			return objectMapper.readValue( input, clazz );

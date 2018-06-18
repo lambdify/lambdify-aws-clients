@@ -7,7 +7,11 @@ public interface AwsClientJsonSerializer {
 
 	AwsClientJsonSerializer DEFAULT = getDefaultJsonSerializer();
 
-	String serialize(Object object);
+	default String serialize(Object object) {
+		return new String( serializeAsBytes( object ) );
+	}
+
+	byte[] serializeAsBytes(Object object);
 
 	<T> T unserialize(String input, Class<T> clazz);
 

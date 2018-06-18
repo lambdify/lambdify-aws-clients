@@ -46,6 +46,11 @@ public class AmazonS3 extends AmazonClient {
 		System.out.println(response);
 	}
 
+	public void putObject(String bucket, String key, Object object ) {
+		val bytes = getJsonSerializer().serializeAsBytes( object );
+		putObject( bucket, key, bytes );
+	}
+
 	protected HttpResponse sendRequest(HttpRequest request) {
 		val response = super.sendRequest( request );
 		if ( response.status() > 299 )

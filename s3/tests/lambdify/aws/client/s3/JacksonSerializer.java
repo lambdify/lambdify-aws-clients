@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.*;
 import lambdify.aws.client.core.http.AwsClientJsonSerializer;
 
 /**
- *
+ * Sample serializer.
  */
 public class JacksonSerializer implements AwsClientJsonSerializer {
 
@@ -24,6 +24,15 @@ public class JacksonSerializer implements AwsClientJsonSerializer {
 	public String serialize( Object object ) {
 		try {
 			return objectMapper.writeValueAsString( object );
+		} catch ( JsonProcessingException e ) {
+			throw new IllegalStateException( e );
+		}
+	}
+
+	@Override
+	public byte[] serializeAsBytes(Object object) {
+		try {
+			return objectMapper.writeValueAsBytes( object );
 		} catch ( JsonProcessingException e ) {
 			throw new IllegalStateException( e );
 		}
