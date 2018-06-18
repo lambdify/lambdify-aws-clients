@@ -5,6 +5,8 @@ import lombok.val;
 
 public interface AwsClientJsonSerializer {
 
+	AwsClientJsonSerializer DEFAULT = getDefaultJsonSerializer();
+
 	String serialize(Object object);
 
 	<T> T unserialize(String input, Class<T> clazz);

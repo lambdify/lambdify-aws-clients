@@ -15,7 +15,7 @@ public abstract class AmazonClientBuilder<BUILDER extends AmazonClientBuilder, C
 
 	private AwsClientJsonSerializer getJsonSerializer() {
 		if ( jsonSerializer == null )
-			this.jsonSerializer = AwsClientJsonSerializer.getDefaultJsonSerializer();
+			this.jsonSerializer = AwsClientJsonSerializer.DEFAULT;
 		return jsonSerializer;
 	}
 
