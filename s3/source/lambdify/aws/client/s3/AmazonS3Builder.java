@@ -10,6 +10,8 @@ import lombok.experimental.Accessors;
 @Accessors(fluent = true)
 public class AmazonS3Builder extends AmazonClientBuilder<AmazonS3Builder, AmazonS3> {
 
+	private static final String REGION_NORTH_VIRGINIA = "us-east-1";
+
 	public AmazonS3Builder(){
 		setService( "s3" );
 	}
@@ -24,6 +26,8 @@ public class AmazonS3Builder extends AmazonClientBuilder<AmazonS3Builder, Amazon
 
 	@Override
 	protected String getHost() {
-		return getService() + ".amazonaws.com";
+		if ( REGION_NORTH_VIRGINIA.equals( getRegion() ) )
+			return "s3.amazonaws.com";
+		return "s3-" + getRegion() + ".amazonaws.com";
 	}
 }

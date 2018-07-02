@@ -1,6 +1,6 @@
 package lambdify.aws.client.s3;
 
-import static lambdify.aws.client.core.AwsCredentialsProvider.defaultCredentialsChain;
+import static lambdify.aws.client.core.AwsCredentialsProvider.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.ByteArrayInputStream;
 import java.util.*;
@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
  */
 class AmazonS3Test {
 
-	static final String SAMPLE_JSON = "{ \"hello\": \"mate\" }";
+	static final String SAMPLE_JSON = "{\"hello\":\"mate\"}";
 	static final Map<String, Object> JSON = Collections.singletonMap("hello", "mate");
 
 	final AmazonS3 s3 = AmazonS3.builder()

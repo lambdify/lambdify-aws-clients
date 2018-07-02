@@ -65,9 +65,7 @@ public interface AwsCredentialsProvider {
 
 			val sessionToken = System.getenv(SESSION_KEY_ENV_VAR);
 
-			val credentials =  new StaticAwsCredentials( trim(accessKey), trim(secretKey), trim( sessionToken ));
-			System.out.println( "credentials = " + credentials );
-			return credentials;
+			return new StaticAwsCredentials( trim(accessKey), trim(secretKey), trim( sessionToken ));
 		}
 
 		static String trim( String s ) {

@@ -116,9 +116,7 @@ public class AuthorizationHeaderAWS4Signer {
             buffer.append(header.toLowerCase());
         }
 
-        val headerNames = buffer.toString();
-        System.out.println( "headerNames = " + headerNames );
-        return headerNames;
+        return buffer.toString();
     }
 
     /**

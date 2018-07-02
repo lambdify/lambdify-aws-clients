@@ -23,8 +23,6 @@ public class AmazonS3 extends AmazonClient {
 	}
 
 	public S3Object getObject( String bucket, String key ) {
-		if ( key.charAt( 0 ) != '/' )
-			key = "/" + key;
 
 		val request = new HttpUtils.HttpRequest().endpoint( buildEndpoint( bucket, key ) ).method( Methods.GET );
 		val response = sendRequest( request );
@@ -35,15 +33,11 @@ public class AmazonS3 extends AmazonClient {
 	}
 
 	public void putObject(String bucket, String key, byte[] bytes ) {
-		if ( key.charAt( 0 ) != '/' )
-			key = "/" + key;
-
 		val request = new HttpUtils.HttpRequest().endpoint( buildEndpoint( bucket, key ) )
 				.method( Methods.PUT )
 				.putHeader( "Content-Length", String.valueOf( bytes.length ) )
 				.body( bytes );
-		val response = sendRequest( request );
-		System.out.println(response);
+		sendRequest( request );
 	}
 
 	public void putObject(String bucket, String key, Object object ) {
@@ -59,8 +53,11 @@ public class AmazonS3 extends AmazonClient {
 	}
 
 	private URL buildEndpoint(String bucket, String key) {
+		if ( key.charAt( 0 ) != '/' )
+			key = "/" + key;
+
 		try {
-			return new URL("https://" + bucket + "." + getHost() + key );
+			return new URL("https://" +  getHost() + "/" + bucket + key );
 		} catch ( MalformedURLException e ) {
 			throw new HttpException( e );
 		}
