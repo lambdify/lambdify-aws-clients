@@ -22,7 +22,7 @@ class AmazonDynamoDBTest {
 			.setRegion( "sa-east-1" )
 			.build();
 	
-	static final String TABLE_NAME = "raccon.asker.Person";
+	static final String TABLE_NAME = "Lambdify";
 	
 	static final Map<String, AttributeValue> ENTRY = mapOf( AttributeValue.class )
 			.put( "document", AttributeValue.create().withS( "321654987" ) )
