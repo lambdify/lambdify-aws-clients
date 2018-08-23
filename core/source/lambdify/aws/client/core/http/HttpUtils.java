@@ -27,7 +27,7 @@ public class HttpUtils {
             if ( httpRequest.body != null )
                 sendBody( connection, httpRequest.body );
             return new HttpResponse( connection.getResponseCode(), connection.getHeaderFields(), readResponse(connection) );
-        } catch (Exception e) {
+        } catch (Throwable e) {
             throw new HttpException("Request failed. " + e.getMessage(), e);
         } finally {
             if (connection != null)
@@ -49,7 +49,7 @@ public class HttpUtils {
             connection.setDoOutput(true);
             return connection;
         } catch (Exception e) {
-            throw new RuntimeException("Cannot create connection. " + e.getMessage(), e);
+            throw new HttpException("Cannot create connection. " + e.getMessage(), e);
         }
     }
 
@@ -115,7 +115,7 @@ public class HttpUtils {
 
     public static MapBuilder<String, String> createDefaultAwsHeaders(){
         return MapBuilder.mapOf( String.class )
-            .put("content-type", "application/json");
+                .put("content-type", "application/json");
     }
 
     @Value @Accessors(fluent = true)
@@ -176,7 +176,7 @@ public class HttpUtils {
                 this.body = body.getBytes( "UTF-8" );
                 return this;
             } catch ( UnsupportedEncodingException e ) {
-                throw new IllegalStateException( e );
+                throw new HttpException( e );
             }
         }
 

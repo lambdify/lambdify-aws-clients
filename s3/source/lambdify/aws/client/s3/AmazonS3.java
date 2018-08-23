@@ -28,8 +28,8 @@ public class AmazonS3 extends AmazonClient {
 		val response = sendRequest( request );
 		val headers = response.flatHeaders();
 		return new S3Object().setKey( key ).setBucketName( bucket )
-			.setMetadata( new ObjectMetadata().setMetadata( headers ) )
-			.setObjectContent( new ByteArrayInputStream( response.response() ) );
+				.setMetadata( new ObjectMetadata().setMetadata( headers ) )
+				.setObjectContent( new ByteArrayInputStream( response.response() ) );
 	}
 
 	public void putObject(String bucket, String key, byte[] bytes ) {
@@ -48,7 +48,7 @@ public class AmazonS3 extends AmazonClient {
 	protected HttpResponse sendRequest(HttpRequest request) {
 		val response = super.sendRequest( request );
 		if ( response.status() > 299 )
-			throw new HttpException( response.responseAsString() );
+			throw new AmazonS3ExecutionFailure( response.responseAsString() );
 		return response;
 	}
 
@@ -67,4 +67,10 @@ public class AmazonS3 extends AmazonClient {
 		return new AmazonS3Builder();
 	}
 
+	public static class AmazonS3ExecutionFailure extends AmazonClientExecutionFailure {
+
+		public AmazonS3ExecutionFailure(String msg) {
+			super(msg);
+		}
+	}
 }

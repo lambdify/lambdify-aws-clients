@@ -16,13 +16,13 @@ import lombok.experimental.*;
 public class AmazonDynamoDB extends AmazonClient {
 
 	private static final String
-		OPERATION_PUT_ITEM = "DynamoDB_20120810.PutItem",
-		OPERATION_GET_ITEM = "DynamoDB_20120810.GetItem",
-		OPERATION_DELETE_ITEM = "DynamoDB_20120810.DeleteItem",
-		OPERATION_UPDATE_ITEM = "DynamoDB_20120810.UpdateItem",
-		OPERATION_QUERY = "DynamoDB_20120810.Query",
-		OPERATION_SCAN = "DynamoDB_20120810.Scan"
-	;
+			OPERATION_PUT_ITEM = "DynamoDB_20120810.PutItem",
+			OPERATION_GET_ITEM = "DynamoDB_20120810.GetItem",
+			OPERATION_DELETE_ITEM = "DynamoDB_20120810.DeleteItem",
+			OPERATION_UPDATE_ITEM = "DynamoDB_20120810.UpdateItem",
+			OPERATION_QUERY = "DynamoDB_20120810.Query",
+			OPERATION_SCAN = "DynamoDB_20120810.Scan"
+					;
 
 	public AmazonDynamoDB(
 			AwsClientJsonSerializer jsonSerializer, AwsCredentialsProvider provider,
@@ -78,11 +78,24 @@ public class AmazonDynamoDB extends AmazonClient {
 			val message = any.containsKey( "Message" )
 					? any.get( "Message" ).toString()
 					: any.get( "message" ).toString();
-			throw new HttpException( type, message );
+			throw new AmazonDynamoDBExecutionFailure( type, message );
 		}
 	}
 
 	public static AmazonDynamoDBBuilder builder(){
 		return new AmazonDynamoDBBuilder();
+	}
+
+	@Getter
+	public static class AmazonDynamoDBExecutionFailure extends AmazonClientExecutionFailure {
+
+		final String type;
+		final String response;
+
+		public AmazonDynamoDBExecutionFailure(String type, String response) {
+			super("Type: " + type + "; Response: " + response);
+			this.type = type;
+			this.response = response;
+		}
 	}
 }
