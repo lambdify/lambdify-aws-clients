@@ -7,7 +7,7 @@ parent:
 
 groupId: org.lambdify
 artifactId: lambdify-aws-client-parent
-version: 0.7.2.Final
+version: 0.7.3.Final
 packaging: pom
 
 scm: { url: "git@github.com:lambdify/lambdify-aws-client.git" }
