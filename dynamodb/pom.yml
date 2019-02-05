@@ -12,6 +12,7 @@ packaging: jar
 
 properties:
   version.jackson: "2.9.5"
+  version.lombok: 1.18.4
 
 dependencies:
 - { groupId: org.lambdify, artifactId: lambdify-aws-client-core, version: "${project.version}" }

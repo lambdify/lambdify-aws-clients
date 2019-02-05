@@ -73,7 +73,7 @@ public class AmazonDynamoDB extends AmazonClient {
 			return super.sendJsonRequestAndParseResponse( expectedResponseType, httpRequest );
 		} catch ( AmazonClientException cause ) {
 			val responseAsString = cause.getResponse().responseAsString();
-			val any = getJsonSerializer().unserialize( responseAsString, Map.class );
+			val any = getJsonSerializer().deserialize( responseAsString, Map.class );
 			val type = any.get( "__type" ).toString().replaceFirst( "^.*#", "" );
 			val message = any.containsKey( "Message" )
 					? any.get( "Message" ).toString()

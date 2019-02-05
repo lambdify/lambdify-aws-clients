@@ -8,10 +8,15 @@ import lambdify.aws.client.dynamodb.model.*;
 import lambdify.aws.events.dynamodb.AttributeValue;
 import lombok.val;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.*;
 
 /**
  *
  */
+@EnabledIfEnvironmentVariable(
+	named = "ENV",
+	matches = "CI"
+)
 class AmazonDynamoDBTest {
 
 	final AwsCredentialsProvider defaultCredentials =

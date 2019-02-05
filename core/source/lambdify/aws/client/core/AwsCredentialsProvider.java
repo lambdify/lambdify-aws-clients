@@ -3,7 +3,6 @@ package lambdify.aws.client.core;
 import java.util.*;
 import lambdify.aws.client.core.AwsCredentials.StaticAwsCredentials;
 import lombok.*;
-import lombok.experimental.var;
 
 public interface AwsCredentialsProvider {
 

@@ -20,7 +20,7 @@ public abstract class AmazonClient {
 		val response = sendRequest( httpRequest );
 		if ( response.status() == 200 ) {
 			val responseAsString = response.responseAsString();
-			return jsonSerializer.unserialize( responseAsString, expectedResponseType );
+			return jsonSerializer.deserialize( responseAsString, expectedResponseType );
 		}
 
 		throw new AmazonClientException( response );

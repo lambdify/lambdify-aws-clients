@@ -6,10 +6,15 @@ import java.io.ByteArrayInputStream;
 import java.util.*;
 import lombok.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.*;
 
 /**
  *
  */
+@EnabledIfEnvironmentVariable(
+	named = "ENV",
+	matches = "CI"
+)
 class AmazonS3Test {
 
 	static final String SAMPLE_JSON = "{\"hello\":\"mate\"}";

@@ -13,9 +13,9 @@ public interface AwsClientJsonSerializer {
 
 	byte[] serializeAsBytes(Object object);
 
-	<T> T unserialize(String input, Class<T> clazz);
+	<T> T deserialize(String input, Class<T> clazz);
 
-	<T> List<T> unserializeAsList(String input, Class<T> clazz);
+	<T> List<T> deserializeAsList(String input, Class<T> clazz);
 
 	@SuppressWarnings( "LoopStatementThatDoesntLoop" )
 	static AwsClientJsonSerializer getDefaultJsonSerializer() {

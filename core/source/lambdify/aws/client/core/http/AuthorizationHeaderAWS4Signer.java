@@ -8,8 +8,7 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import lambdify.aws.client.core.AwsCredentials;
 import lambdify.aws.client.core.http.HttpUtils.HttpRequest;
-import lombok.experimental.var;
-import lombok.val;
+import lombok.*;
 
 /**
  * AWS4 signer for authorization header.

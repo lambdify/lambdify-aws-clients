@@ -9,3 +9,6 @@ parent:
 groupId: org.lambdify
 artifactId: lambdify-aws-client-core
 packaging: jar
+
+properties:
+  version.lombok: 1.18.4
