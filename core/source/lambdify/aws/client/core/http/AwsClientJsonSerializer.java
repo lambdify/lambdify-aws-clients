@@ -20,9 +20,12 @@ public interface AwsClientJsonSerializer {
 	@SuppressWarnings( "LoopStatementThatDoesntLoop" )
 	static AwsClientJsonSerializer getDefaultJsonSerializer() {
 		val serializers = ServiceLoader.load( AwsClientJsonSerializer.class );
-		for ( AwsClientJsonSerializer serializer : serializers ) {
+		for ( val serializer : serializers ) {
+			System.err.println( "AWS Client JSON Serializer found: " + serializer.getClass().getCanonicalName() );
 			return serializer;
 		}
+
+		System.err.println( "No JSON Serializer found for AWS Client implementation" );
 		return null;
 	}
 }
