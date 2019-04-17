@@ -3,7 +3,7 @@ modelVersion: 4.0.0
 parent:
   groupId: org.lambdify
   artifactId: lambdify-aws-client-parent
-  version: 0.7.3.Final
+  version: 0.8.0.Final
   relativePath: "../pom.yml"
 
 groupId: org.lambdify
